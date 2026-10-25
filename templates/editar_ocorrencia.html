@@ -89,7 +89,7 @@
     <!-- Barra Superior -->
     <div class="top-bar">
         <span>PManager</span>
-        <a href="/editar-ocorrencia" class="nav-btn">Voltar</a>
+        <a href="{{ url_for('lista.list_ocorrencia')}}" class="nav-btn">Voltar</a>
     </div>
 
     <!-- Conteúdo Principal -->
@@ -103,7 +103,7 @@
             </div>
             <p class="text-muted mb-4">Atualize os detalhes ou o status do registro policial.</p>
 
-            <form action="/editar-ocorrencia/1" method="POST">
+            <form action="{{ url_for('update.upd_ocorrencia', id=ocorrencia.id) }}" method="POST">
 
                 <!-- Seção 1: Informações de Auditoria (NÃO EDITÁVEIS) -->
                 <div class="section-title">Informações de Auditoria</div>
@@ -135,14 +135,14 @@
                 <div class="row g-3 mb-4">
                     <div class="col-md-6">
                         <label for="uf" class="form-label text-secondary fw-semibold">Estado (UF)</label>
-                        <select class="form-select" id="uf" name="uf" required onchange="carregarCidades(this.value)">
-                            <option value="" disabled>Selecione o Estado</option>
+                        <select class="form-select" id="uf" name="estado" required onchange="carregarCidades(this.value)">
+                            <option value="{{ ocorrencia.estado }}" disabled>Selecione o Estado</option>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="cidade" class="form-label text-secondary fw-semibold">Cidade</label>
                         <select class="form-select" id="cidade" name="cidade" required disabled>
-                            <option value="" disabled>Selecione a Cidade</option>
+                            <option value="{{ ocorrencia.cidade }}" disabled>Selecione a Cidade</option>
                         </select>
                     </div>
                 </div>
@@ -152,17 +152,17 @@
 
                 <div class="mb-3">
                     <label for="tipo_crime" class="form-label text-secondary fw-semibold">Tipo do Crime</label>
-                    <input type="text" class="form-control" id="tipo_crime" name="tipo_crime" value="Furto de Veículo" required>
+                    <input type="text" class="form-control" id="tipo_crime" name="tipo_crime" value="{{ ocorrencia.tipo_crime }}" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="cpf_vitima" class="form-label text-secondary fw-semibold">CPF da Vítima</label>
-                    <input type="text" class="form-control" id="cpf_vitima" name="cpf_vitima" value="123.456.789-00" maxlength="14" oninput="mascaraCPF(this)" required>
+                    <input type="text" class="form-control" id="cpf_vitima" name="cpf_vitima" value="{{ ocorrencia.cpf }}" maxlength="14" oninput="mascaraCPF(this)" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="descricao" class="form-label text-secondary fw-semibold">Descrição do Acontecimento</label>
-                    <textarea class="form-control" id="descricao" name="descricao" rows="5" required>Veículo furtado durante o período noturno enquanto estava estacionado em frente à residência da vítima. Câmeras de segurança locais capturaram o momento por volta das 02:15.</textarea>
+                    <textarea class="form-control" id="descricao" name="descricao" rows="5" required>{{ ocorrencia.relato }}</textarea>
                 </div>
 
                 <!-- Seção 4: Status da Ocorrência (EDITÁVEL) -->
