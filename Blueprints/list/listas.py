@@ -53,4 +53,27 @@ def list_ocorrencia():
 @lista_bp.route('/list_fichas', methods=['GET','POST'])
 def list_fichas():
 
-    return render_template('listar_ficha_criminal.html')
+    # fichas = Miro coloca aqui a table das pessoas
+
+    fichas = [
+        {
+            "id": 1,
+            "nome" : "Vandra Volkovenn",
+            "cpf": "243.456.789-00",
+            "data_nascimento": "2026-06-06 12:00",
+        },
+        {
+            "id": 2,
+            "nome" : "Vandra Volksvagens",
+            "cpf": "123.456.789-00",
+            "data_nascimento": "2026-06-06 12:00",
+        }
+    ]
+
+    filtro_cpf = request.args.get('cpf')
+    filtro_nome = request.args.get('nome')
+
+    print(filtro_cpf,filtro_nome)
+
+
+    return render_template('listar_ficha_criminal.html', individuos=fichas)
