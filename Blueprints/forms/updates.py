@@ -9,13 +9,17 @@ def upd_ocorrencia(id):
 
     ocorrencia = {
             "id": 1,
-            "data_registro": "2026-06-06 12:00",
-            "estado": "PB",
+            "horario_registro": "12:00",
+            "estado": "Paraiba (PB)",
             "cidade": "Cajazeiras",
             "tipo_crime": "Furto",
             "cpf_vitima": "123.456.789-00",
-            "descricao": "Exemplo de relato de teste.",
-            "status": "Em Andamento"
+            "relato": "Exemplo de relato de teste.",
+            "status": "Em Andamento",
+            "created_by" : "Antonio",
+            "created_at" : "13/04/2000",
+            "updated_by" : "Arthur",
+            "updated_at" : "24/05/2000"
         }
 
     if request.method == 'POST':
